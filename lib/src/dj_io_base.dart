@@ -1,14 +1,20 @@
 import 'package:dj/dj.dart';
 
+import 'ios/ios.dart';
+
 /// IO Warapper for BaseDJ from 'dj' library.
 class BaseDjIo {
-  final BaseDj baseDj;
+  final Map<String, dynamic> baseDjMap;
 
   BaseDjIo({
-    required this.baseDj,
+    required this.baseDjMap,
   });
 
   void write() {
-    //IO write code will be added here.
+    print('Writting to Disk...');
+    var baseDj = BaseDj.fromJson(baseDjMap);
+
+    var directoryDjIo = DirectoryDjIo(directoryDj: baseDj.node);
+    directoryDjIo.create(baseDj.path);
   }
 }
