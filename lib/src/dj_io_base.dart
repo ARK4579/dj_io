@@ -1,3 +1,6 @@
+import 'dart:io';
+import 'package:path/path.dart' as p;
+
 import 'package:dj/dj.dart';
 
 import 'ios/ios.dart';
@@ -16,5 +19,10 @@ class BaseDjIo {
 
     var directoryDjIo = DirectoryDjIo(directoryDj: baseDj.node);
     directoryDjIo.create(baseDj.path);
+
+    var dirPath = p.join(baseDj.path, directoryDjIo.directoryDj.name);
+    print('Formatting $dirPath...');
+    var result = Process.runSync('dart', ['format', dirPath]);
+    print(result.stdout);
   }
 }
