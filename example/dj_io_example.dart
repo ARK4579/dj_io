@@ -1,3 +1,4 @@
+import 'package:dj/main/djs/code_djs/if_else.dart';
 import 'package:path/path.dart' as p;
 
 import 'package:dj_io/dj_io.dart';
@@ -24,7 +25,26 @@ void main() {
               bodyCodeParts: [
                 FunctionCallDj(
                   name: 'print',
-                  args: ["'Hellow World!'"],
+                  arg: "'Hello World!'",
+                ),
+                IfElseDj(
+                  conditions: [
+                    Condition(
+                      conditionLeft: '1',
+                      operator: Operator.Equal,
+                      conditionRight: '2',
+                      body: FunctionCallDj(
+                        name: 'print',
+                        arg: "'Its True!'",
+                      ),
+                    ),
+                    Condition(
+                      body: FunctionCallDj(
+                        name: 'print',
+                        arg: "'Its False!'",
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
