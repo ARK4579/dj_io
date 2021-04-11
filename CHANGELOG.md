@@ -1,3 +1,7 @@
+## 0.0.3
+
+- Updated Example with dj v0.0.8
+
 ## 0.0.2
 
 - Updated Example with dj v0.0.7
