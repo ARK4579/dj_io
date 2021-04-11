@@ -15,9 +15,26 @@ void main() {
         FileDj(
           name: 'hello_world',
           codeParts: [
-            // This import is really not needed in generated file
-            // Adding this line for demonstration only!
-            ImportDj(importStr: 'package:io/io.dart'),
+            ImportDj(importStr: 'package:flutter/material.dart'),
+            StatelessWidgetDj(
+              name: 'SimpleWidget',
+              args: [
+                FunctionArg(
+                  type: VariableType.String,
+                  isRequired: true,
+                  name: 'msg',
+                ),
+              ],
+              body: [
+                FunctionCallDj(
+                  name: 'print',
+                  arg: "'Its True! 1 equals 2 now!'",
+                ),
+                ReturnDj(
+                  returnStr: 'Container()',
+                ),
+              ],
+            ),
             FunctionDj(
               description: 'Main entry point to this file!',
               outputType: VariableType.Void,
@@ -35,7 +52,16 @@ void main() {
                       conditionRight: '2',
                       body: FunctionCallDj(
                         name: 'print',
-                        arg: "'Its True!'",
+                        arg: "'Its True! 1 equals 2 now!'",
+                      ),
+                    ),
+                    Condition(
+                      conditionLeft: '2',
+                      operator: Operator.Equal,
+                      conditionRight: '1',
+                      body: FunctionCallDj(
+                        name: 'print',
+                        arg: "'Its True! 2 equals 1 now!'",
                       ),
                     ),
                     Condition(

@@ -5,23 +5,43 @@ Write and Format Auto-Generated dart/flutter code to disk while retaining manual
 A simple usage example:
 
 ```dart
+import 'package:dj/main/djs/code_djs/if_else.dart';
+import 'package:path/path.dart' as p;
+
 import 'package:dj_io/dj_io.dart';
 
 void main() {
-  var outputDir = '..\\lib';
+  var outputDir = p.join('lib');
 
   // Usnig 'dj' library to generate code structure
   var baseDj = BaseDj(
-    baseDirectoryPath: outputDir,
-    baseNode: DirectoryDj(
-      directoryName: 'dj_generated',
+    path: outputDir,
+    node: DirectoryDj(
+      name: 'dj_generated',
       nodes: [
         FileDj(
-          fileName: 'hello_world',
+          name: 'hello_world',
           codeParts: [
-            // This import is really not needed in generated file
-            // Adding this line for demonstration only!
-            ImportDj(importStr: 'package:io/io.dart'),
+            ImportDj(importStr: 'package:flutter/material.dart'),
+            StatelessWidgetDj(
+              name: 'SimpleWidget',
+              args: [
+                FunctionArg(
+                  type: VariableType.String,
+                  isRequired: true,
+                  name: 'msg',
+                ),
+              ],
+              body: [
+                FunctionCallDj(
+                  name: 'print',
+                  arg: "'Its True! 1 equals 2 now!'",
+                ),
+                ReturnDj(
+                  returnStr: 'Container()',
+                ),
+              ],
+            ),
             FunctionDj(
               description: 'Main entry point to this file!',
               outputType: VariableType.Void,
@@ -29,7 +49,35 @@ void main() {
               bodyCodeParts: [
                 FunctionCallDj(
                   name: 'print',
-                  args: ["'Hellow World!'"],
+                  arg: "'Hello World!'",
+                ),
+                IfElseDj(
+                  conditions: [
+                    Condition(
+                      conditionLeft: '1',
+                      operator: Operator.Equal,
+                      conditionRight: '2',
+                      body: FunctionCallDj(
+                        name: 'print',
+                        arg: "'Its True! 1 equals 2 now!'",
+                      ),
+                    ),
+                    Condition(
+                      conditionLeft: '2',
+                      operator: Operator.Equal,
+                      conditionRight: '1',
+                      body: FunctionCallDj(
+                        name: 'print',
+                        arg: "'Its True! 2 equals 1 now!'",
+                      ),
+                    ),
+                    Condition(
+                      body: FunctionCallDj(
+                        name: 'print',
+                        arg: "'Its False!'",
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -39,14 +87,16 @@ void main() {
     ),
   );
 
+  // Generating Json for Auto-Generated code
+  var baseDjMap = baseDj.toJson();
+
   print('Auto-Generated Code:');
-  print(baseDj.toJson());
+  print(baseDjMap);
 
   // Using This librarie's BaseDjIo Writter to write generated code to disk.
-  var baseDjIo = BaseDjIo(baseDj: baseDj);
+  var baseDjIo = BaseDjIo(baseDjMap: baseDjMap);
   baseDjIo.write();
 }
-
 ```
 
 ## Features and bugs
