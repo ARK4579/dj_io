@@ -29,5 +29,7 @@ class FileDjIo extends NodeDjIo {
       });
     });
     fileWritter.close();
+
+    print('Wrote ${fileDj.name}.${fileDj.fileExtension}');
   }
 }
