@@ -99,6 +99,16 @@ void main() {
 }
 ```
 
+You can run this example using following command:
+
+`flutter pub run .\example\dj_io_example.dart;`
+
+This will generated code in _lib\dj_generated_ directory.
+
+If generated code is not formatted you can run following command to format it:
+
+`dart format .\lib\dj_generated\`
+
 ## Features and bugs
 
 Please file feature requests and bugs at the [issue tracker][tracker].
