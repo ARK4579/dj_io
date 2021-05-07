@@ -1,6 +1,6 @@
 name: dj_io
 description: Write and Format Auto-Generated dart/flutter code to disk while retaining manual user updates.
-version: 0.0.3
+version: 0.0.4
 homepage: https://www.ark4579.com
 repository: https://github.com/ARK4579/dj_io
 issue_tracker: https://github.com/ARK4579/dj_io/issues
