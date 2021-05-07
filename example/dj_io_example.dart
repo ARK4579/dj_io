@@ -15,26 +15,7 @@ void main() {
         FileDj(
           name: 'hello_world',
           codeParts: [
-            ImportDj(importStr: 'package:flutter/material.dart'),
-            StatelessWidgetDj(
-              name: 'SimpleWidget',
-              args: [
-                FunctionArg(
-                  type: VariableType.String,
-                  isRequired: true,
-                  name: 'msg',
-                ),
-              ],
-              body: [
-                FunctionCallDj(
-                  name: 'print',
-                  arg: "'Its True! 1 equals 2 now!'",
-                ),
-                ReturnDj(
-                  returnStr: 'Container()',
-                ),
-              ],
-            ),
+            ImportDj(importStr: 'simple_widget.dart'),
             FunctionDj(
               description: 'Main entry point to this file!',
               outputType: VariableType.Void,
@@ -71,6 +52,31 @@ void main() {
                       ),
                     ),
                   ],
+                ),
+              ],
+            ),
+          ],
+        ),
+        FileDj(
+          name: 'simple_widget',
+          codeParts: [
+            ImportDj(importStr: 'package:flutter/material.dart'),
+            StatelessWidgetDj(
+              name: 'SimpleWidget',
+              args: [
+                FunctionArg(
+                  type: VariableType.String,
+                  isRequired: true,
+                  name: 'msg',
+                ),
+              ],
+              body: [
+                FunctionCallDj(
+                  name: 'print',
+                  arg: "'Its True! 1 equals 2 now!'",
+                ),
+                ReturnDj(
+                  returnStr: 'Container()',
                 ),
               ],
             ),
