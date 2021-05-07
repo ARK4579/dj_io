@@ -23,17 +23,24 @@ class DirectoryDjIo extends NodeDjIo {
     directory.createSync();
 
     directoryDj.nodes?.forEach((node) {
-      if (node.type == StructureType.Directory) {
-        var nodeDirectoryDjIo =
-            DirectoryDjIo(directoryDj: DirectoryDj.fromJson(node.toJson()));
-        nodeDirectoryDjIo.create(dirPath);
-      } else if (node.type == StructureType.File) {
-        var nodeDirectoryDjIo =
-            FileDjIo(fileDj: FileDj.fromJson(node.toJson()));
-        nodeDirectoryDjIo.create(dirPath);
-      } else {
-        print('${node.runtimeType} Not Handeled');
+      var nodeDjIo = getNodeDj(node);
+      if (nodeDjIo != null) {
+        nodeDjIo.create(dirPath);
+        nodeDjIo.write();
       }
     });
   }
+}
+
+NodeDjIo? getNodeDj(NodeDj? node) {
+  if (node == null) return null;
+  NodeDjIo? nodeDjIo;
+  if (node.type == StructureType.Directory) {
+    nodeDjIo = DirectoryDjIo(directoryDj: DirectoryDj.fromJson(node.toJson()));
+  } else if (node.type == StructureType.File) {
+    nodeDjIo = FileDjIo(fileDj: FileDj.fromJson(node.toJson()));
+  } else {
+    print('${node.runtimeType} Not Handeled');
+  }
+  return nodeDjIo;
 }

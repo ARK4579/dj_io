@@ -11,25 +11,35 @@ class FileDjIo extends NodeDjIo {
     required this.fileDj,
   });
 
+  File? _handler;
+
   @override
   void create(String basePath) {
-    super.create(basePath);
+    if (_handler == null) {
+      super.create(basePath);
 
-    var fileAbsolutePath =
-        p.join(basePath, '${fileDj.name}.${fileDj.fileExtension}');
+      var fullFileName = '${fileDj.name}.${fileDj.fileExtension}';
+      var fileAbsolutePath = p.join(basePath, fullFileName);
 
-    var file = File(fileAbsolutePath);
+      _handler = File(fileAbsolutePath);
+    }
 
-    file.createSync();
+    _handler!.createSync();
 
-    var fileWritter = file.openWrite();
-    fileDj.codeParts?.forEach((codePart) {
-      codePart.lines().forEach((codePartLine) {
-        fileWritter.writeln(codePartLine);
+    print('Created ${_handler?.absolute.path.toString()}');
+  }
+
+  @override
+  void write() {
+    if (_handler != null) {
+      var fileWritter = _handler!.openWrite();
+      fileDj.codeParts?.forEach((codePart) {
+        codePart.lines().forEach((codePartLine) {
+          fileWritter.writeln(codePartLine);
+        });
       });
-    });
-    fileWritter.close();
-
-    print('Wrote ${fileDj.name}.${fileDj.fileExtension}');
+      fileWritter.close();
+    }
+    print('Wrote ${_handler?.absolute.path.toString()}');
   }
 }
