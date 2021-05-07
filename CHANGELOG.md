@@ -1,5 +1,10 @@
 ## 0.0.3
 
+- Updated DjIo's for seprate Create and Write
+- Updated Example with dj v0.0.9
+
+## 0.0.3
+
 - Updated Example with dj v0.0.8
 
 ## 0.0.2
