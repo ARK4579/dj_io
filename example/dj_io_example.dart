@@ -6,7 +6,7 @@ import 'package:dj_io/dj_io.dart';
 void main() {
   var outputDir = p.join('lib');
 
-  // Usnig 'dj' library to generate code structure
+  // Using 'dj' library to generate code structure
   var baseDj = BaseDj(
     path: outputDir,
     node: DirectoryDj(
@@ -92,7 +92,7 @@ void main() {
   print('Auto-Generated Code:');
   print(baseDjMap);
 
-  // Using This librarie's BaseDjIo Writter to write generated code to disk.
+  // Using This libraries BaseDjIo Writer to write generated code to disk.
   var baseDjIo = BaseDjIo(baseDjMap: baseDjMap);
   baseDjIo.write();
 }
