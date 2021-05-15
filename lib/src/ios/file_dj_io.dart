@@ -32,7 +32,7 @@ class FileDjIo extends NodeDjIo {
     if (_handler != null) {
       var fileWriter = _handler!.openWrite();
       fileDj.codeParts?.forEach((codePart) {
-        codePart.lines().forEach((codePartLine) {
+        codePart.toCode().forEach((codePartLine) {
           fileWriter.writeln(codePartLine);
         });
       });
