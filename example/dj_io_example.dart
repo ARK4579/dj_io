@@ -17,7 +17,7 @@ void main() {
           codeParts: [
             ImportDj(importStr: 'simple_widget.dart'),
             FunctionDj(
-              description: 'Main entry point to this file!',
+              descriptionDj: 'Main entry point to this file!',
               outputType: VariableType.Void,
               name: 'main',
               bodyCodeParts: [
