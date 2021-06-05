@@ -6,7 +6,7 @@ import 'package:dj_io/dj_io.dart';
 void main() {
   var outputDir = p.join('lib');
 
-  // Usnig 'dj' library to generate code structure
+  // Using 'dj' library to generate code structure
   var baseDj = BaseDj(
     path: outputDir,
     node: DirectoryDj(
@@ -17,7 +17,7 @@ void main() {
           codeParts: [
             ImportDj(importStr: 'simple_widget.dart'),
             FunctionDj(
-              description: 'Main entry point to this file!',
+              descriptionDj: 'Main entry point to this file!',
               outputType: VariableType.Void,
               name: 'main',
               bodyCodeParts: [
@@ -57,31 +57,7 @@ void main() {
             ),
           ],
         ),
-        FileDj(
-          name: 'simple_widget',
-          codeParts: [
-            ImportDj(importStr: 'package:flutter/material.dart'),
-            StatelessWidgetDj(
-              name: 'SimpleWidget',
-              args: [
-                FunctionArg(
-                  type: VariableType.String,
-                  isRequired: true,
-                  name: 'msg',
-                ),
-              ],
-              body: [
-                FunctionCallDj(
-                  name: 'print',
-                  arg: "'Its True! 1 equals 2 now!'",
-                ),
-                ReturnDj(
-                  returnStr: 'Container()',
-                ),
-              ],
-            ),
-          ],
-        ),
+        // TODO Add ClassDj exmaple File
       ],
     ),
   );
@@ -92,7 +68,7 @@ void main() {
   print('Auto-Generated Code:');
   print(baseDjMap);
 
-  // Using This librarie's BaseDjIo Writter to write generated code to disk.
+  // Using This libraries BaseDjIo Writer to write generated code to disk.
   var baseDjIo = BaseDjIo(baseDjMap: baseDjMap);
   baseDjIo.write();
 }
