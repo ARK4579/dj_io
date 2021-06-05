@@ -25,21 +25,18 @@ class FileDjIo extends NodeDjIo {
     }
 
     _handler!.createSync();
-
-    print('Created ${_handler?.absolute.path.toString()}');
   }
 
   @override
   void write() {
     if (_handler != null) {
-      var fileWritter = _handler!.openWrite();
+      var fileWriter = _handler!.openWrite();
       fileDj.codeParts?.forEach((codePart) {
-        codePart.lines().forEach((codePartLine) {
-          fileWritter.writeln(codePartLine);
+        codePart.toCode().forEach((codePartLine) {
+          fileWriter.writeln(codePartLine);
         });
       });
-      fileWritter.close();
+      fileWriter.close();
     }
-    print('Wrote ${_handler?.absolute.path.toString()}');
   }
 }
