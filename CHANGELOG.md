@@ -1,6 +1,12 @@
-## 0.0.3
+## 0.0.5
 
-- Updated DjIo's for seprate Create and Write
+- Made formatting optional
+- updated code to handle breaking changes in dj package
+- Updated dj package to v0.0.10
+
+## 0.0.4
+
+- Updated DjIo's for separate Create and Write
 - Updated Example with dj v0.0.9
 
 ## 0.0.3
