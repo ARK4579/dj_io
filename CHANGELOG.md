@@ -1,3 +1,7 @@
+## 0.0.6
+
+- Updated dj package to v0.0.11
+
 ## 0.0.5
 
 - Made formatting optional
