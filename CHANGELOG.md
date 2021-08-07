@@ -1,3 +1,7 @@
+## 0.0.7
+
+- formatting added to dart_io using dart_style library
+
 ## 0.0.6
 
 - Updated dj package to v0.0.11
