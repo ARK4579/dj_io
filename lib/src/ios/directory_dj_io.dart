@@ -8,8 +8,11 @@ import 'file_dj_io.dart';
 
 class DirectoryDjIo extends NodeDjIo {
   final DirectoryDj directoryDj;
+  final bool shouldFormat;
+
   DirectoryDjIo({
     required this.directoryDj,
+    this.shouldFormat = true,
   });
 
   @override
@@ -23,7 +26,7 @@ class DirectoryDjIo extends NodeDjIo {
     directory.createSync();
 
     directoryDj.nodes?.forEach((node) {
-      var nodeDjIo = getNodeDj(node);
+      var nodeDjIo = getNodeDj(node, shouldFormat);
       if (nodeDjIo != null) {
         nodeDjIo.create(dirPath);
         nodeDjIo.write();
@@ -32,15 +35,23 @@ class DirectoryDjIo extends NodeDjIo {
   }
 }
 
-NodeDjIo? getNodeDj(NodeDj? node) {
+NodeDjIo? getNodeDj(NodeDj? node, bool shouldFormat) {
   if (node == null) return null;
+
   NodeDjIo? nodeDjIo;
   if (node.type == StructureType.Directory) {
-    nodeDjIo = DirectoryDjIo(directoryDj: DirectoryDj.fromJson(node.toJson()));
+    nodeDjIo = DirectoryDjIo(
+      directoryDj: DirectoryDj.fromJson(node.toJson()),
+      shouldFormat: shouldFormat,
+    );
   } else if (node.type == StructureType.File) {
-    nodeDjIo = FileDjIo(fileDj: FileDj.fromJson(node.toJson()));
+    nodeDjIo = FileDjIo(
+      fileDj: FileDj.fromJson(node.toJson()),
+      shouldFormat: shouldFormat,
+    );
   } else {
     print('${node.runtimeType} Not Handeled');
   }
+
   return nodeDjIo;
 }

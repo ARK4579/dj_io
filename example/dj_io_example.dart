@@ -65,9 +65,6 @@ void main() {
   // Generating Json for Auto-Generated code
   var baseDjMap = baseDj.toJson();
 
-  print('Auto-Generated Code:');
-  print(baseDjMap);
-
   // Using This libraries BaseDjIo Writer to write generated code to disk.
   var baseDjIo = BaseDjIo(baseDjMap: baseDjMap);
   baseDjIo.write();
